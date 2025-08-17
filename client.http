@@ -1,0 +1,29 @@
+# Variables
+@baseUrl = http://localhost:3333
+
+# Health check
+# @name healthCheck
+GET {{baseUrl}}/health
+
+###
+
+# Create club
+# @name createClub
+POST {{baseUrl}}/clubs
+Content-Type: application/json
+
+{
+  "name": "Botaagua FC",
+  "country": "BR",
+  "shortName": "BTA",
+  "logo": "https://github.com/EduardoAraD/assets/blob/main/league/logos/botaagua.png?raw=true",
+  "stadium": "Botaagua Stadium"
+}
+
+###
+
+# Get all clubs
+# @name getAllClubs
+GET {{baseUrl}}/clubs
+
+###
