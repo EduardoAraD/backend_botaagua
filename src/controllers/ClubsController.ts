@@ -3,13 +3,7 @@ import { db } from "../db/connection";
 import { schema } from "../db/schema";
 import { eq } from "drizzle-orm";
 
-interface CreateClubBody {
-  name: string;
-  shortName: string;
-  logo: string;
-  country: string;
-  stadium: string;
-}
+import { CreateClubBody, GetClubsByIdParams } from "../http/typeZod/clubs";
 
 export class ClubsController {
   async createClub (request: FastifyRequest, reply: FastifyReply) {
@@ -17,7 +11,7 @@ export class ClubsController {
 
     const result = await db.insert(schema.clubs).values({
       name,
-      short_name: shortName,
+      shortName,
       logo,
       country,
       stadium,
@@ -36,7 +30,7 @@ export class ClubsController {
     const results = await db.select({
       id: schema.clubs.id,
       name: schema.clubs.name,
-      shortName: schema.clubs.short_name,
+      shortName: schema.clubs.shortName,
       logo: schema.clubs.logo,
       country: schema.clubs.country,
       stadium: schema.clubs.stadium,
@@ -46,7 +40,7 @@ export class ClubsController {
   }
 
   async getClubById (request: FastifyRequest) {
-    const { id } = request.params as { id: string };
+    const { id } = request.params as GetClubsByIdParams;
 
     const result = await db.select().from(schema.clubs).where(eq(schema.clubs.id, id))
     
