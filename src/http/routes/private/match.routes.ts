@@ -1,5 +1,8 @@
 import { FastifyPluginCallbackZod } from "fastify-type-provider-zod";
 
+import { MatchController } from "../../../controllers/MatchController";
+
+const matchController = new MatchController()
 export const MatchsRoutes: FastifyPluginCallbackZod = (app) => {
-  app.post('/match', { schema: {} }, () => {})
+  app.post('/match', { schema: {} }, matchController.create)
 }

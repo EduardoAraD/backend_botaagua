@@ -1,4 +1,5 @@
 import { FastifyPluginCallbackZod } from "fastify-type-provider-zod";
+
 import { CreatePlayerZodSchema, UpdatePlayerZodSchema } from "../../typeZod/player";
 import { PlayerController } from "../../../controllers/PlayerController";
 

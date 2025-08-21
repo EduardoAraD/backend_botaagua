@@ -1,7 +1,7 @@
 import { FastifyPluginCallbackZod } from "fastify-type-provider-zod";
 
-import { ClubsController } from "../../controllers/ClubsController";
-import { getClubByIdZodSchema } from "../typeZod/clubs";
+import { getClubByIdZodSchema } from "../../typeZod/clubs";
+import { ClubsController } from "../../../controllers/ClubsController";
 
 const clubController = new ClubsController();
 

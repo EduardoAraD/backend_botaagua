@@ -47,4 +47,21 @@ export class PlayerController {
 
     return reply.send({ playerId: updatePlayer.id });
   }
+
+  async getAllPlayers(request: FastifyRequest, reply: FastifyReply) {
+    const result = await db.select({
+      name: schema.players.name,
+      image: schema.players.image,
+      position: schema.players.position,
+      overrall: schema.players.overrall,
+      number: schema.players.number,
+      age: schema.players.age,
+      height: schema.players.height,
+      weight: schema.players.weight,
+      foot: schema.players.foot,
+      country: schema.players.country,
+    }).from(schema.players).where(eq(schema.players.active, true)).orderBy(schema.players.createdAt);
+
+    return result;
+  }
 }

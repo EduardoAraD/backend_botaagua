@@ -1,9 +1,12 @@
 import { FastifyPluginCallbackZod } from "fastify-type-provider-zod";
 
-export const ChampionshipRoutes: FastifyPluginCallbackZod = (app) => {
-  app.get('/championhips', { schema: {} }, () => {})
-  
-  app.get('/championhips/:id/league', { schema: {} }, () => {})
+import { ChampionshipController } from "../../../controllers/ChampionshipController";
 
-  app.get('/championhips/:id/matchs', { schema: {} }, () => {})
+const championshipController = new ChampionshipController();
+export const ChampionshipRoutes: FastifyPluginCallbackZod = (app) => {
+  app.get('/championhips', championshipController.getAll)
+  
+  app.get('/championhips/:id/league', { schema: {} }, championshipController.getLeague)
+
+  app.get('/championhips/:id/matchs', { schema: {} }, championshipController.getMatchs)
 }
